@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { Navbar } from './components/layout/Navbar'
 import { PageWrapper } from './components/layout/PageWrapper'
 import { QuizProvider } from './context/QuizContext'
+import { SoundProvider } from './context/SoundContext'
 import { AnalyticsPage } from './pages/AnalyticsPage'
 import { HistoryPage } from './pages/HistoryPage'
 import { LandingPage } from './pages/LandingPage'
@@ -37,8 +38,10 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <QuizProvider>
-      <AppRoutes />
-    </QuizProvider>
+    <SoundProvider>
+      <QuizProvider>
+        <AppRoutes />
+      </QuizProvider>
+    </SoundProvider>
   )
 }

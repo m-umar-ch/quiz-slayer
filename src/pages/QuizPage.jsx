@@ -13,6 +13,7 @@ import { EXAM_MODE_SESSION_KEY } from '../lib/examState'
 import { getSubjectColor } from '../lib/subjectUtils'
 import { cn } from '../lib/utils'
 import { getSavedProgress, clearProgress } from '../context/QuizContext'
+import { useSound } from '../context/SoundContext'
 import { motion } from 'framer-motion'
 import DecryptedText from '../components/reactbits/DecryptedText'
 import ClickSpark from '../components/reactbits/ClickSpark'
@@ -26,6 +27,7 @@ export function QuizPage() {
     answerQuestion, goToQuestion, nextQuestion, prevQuestion, submitQuiz, rehydrate, rehydrateFromProgress,
   } = useQuiz()
   const { getSubjectBySlug } = useSubjectData()
+  const { playSound } = useSound()
 
   const [showResumeModal, setShowResumeModal] = useState(false)
   const [savedProgress, setSavedProgress] = useState(null)
@@ -173,7 +175,10 @@ export function QuizPage() {
             questionNumber={currentIndex + 1}
             selectedIndex={currentAnswer}
             isSubmitted={currentAnswer !== null}
-            onSelect={(i) => answerQuestion(currentIndex, i)}
+            onSelect={(i) => {
+              answerQuestion(currentIndex, i)
+              playSound(i === currentQuestion.correctIndex ? 'Correct' : 'Incorrect')
+            }}
           />
 
           <QuizNavigation

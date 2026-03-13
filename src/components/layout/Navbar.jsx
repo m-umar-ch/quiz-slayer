@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../../hooks/useTheme'
+import { useSound } from '../../context/SoundContext'
 import { cn } from '../../lib/utils'
 import ShinyText from '../reactbits/ShinyText'
 
@@ -46,6 +47,71 @@ function MoonIcon({ className }) {
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
+  )
+}
+
+function SpeakerOnIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+    </svg>
+  )
+}
+
+function SpeakerOffIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+      <line x1="23" y1="9" x2="17" y2="15" />
+      <line x1="17" y1="9" x2="23" y2="15" />
+    </svg>
+  )
+}
+
+/* ─── Sound Toggle ───────────────────────────────────────────────── */
+function SoundToggle() {
+  const { soundEnabled, toggleSound } = useSound()
+
+  return (
+    <motion.button
+      onClick={toggleSound}
+      whileTap={{ scale: 0.85 }}
+      whileHover={{ scale: 1.1 }}
+      aria-label={soundEnabled ? 'Disable sound' : 'Enable sound'}
+      className={cn(
+        'w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200',
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-themed-accent',
+        soundEnabled
+          ? 'text-themed-accent bg-themed-accent/10'
+          : 'text-content-secondary hover:text-content-primary hover:bg-surface-secondary'
+      )}
+    >
+      <AnimatePresence mode="wait">
+        {soundEnabled ? (
+          <motion.span
+            key="on"
+            initial={{ scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.7, opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            <SpeakerOnIcon className="w-4 h-4" />
+          </motion.span>
+        ) : (
+          <motion.span
+            key="off"
+            initial={{ scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.7, opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            <SpeakerOffIcon className="w-4 h-4" />
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
   )
 }
 
@@ -188,6 +254,8 @@ export function Navbar() {
               />
             )}
           </Link>
+
+          <SoundToggle />
 
           {/* Divider */}
           <div
