@@ -2,30 +2,6 @@
 
 export const EXAM_SUBJECTS = [
   {
-    slug: 'freelancing',
-    label: 'Freelancing',
-    shortLabel: 'FL',
-    iconKey: 'briefcase',
-    color: 'emerald',
-    unlockUtc: '2026-03-13T04:00:00Z', // 09:00 AM PKT (UTC+5)
-    quizSlugs: [],
-    poolType: 'combined', // questions + guessQuestions
-    examName: 'Freelancing Exam',
-    description: '30 MCQs drawn from the full question bank',
-  },
-  {
-    slug: 'parallel-distributed-computing',
-    label: 'Parallel & Distributed Computing',
-    shortLabel: 'PDC',
-    iconKey: 'network',
-    color: 'sky',
-    unlockUtc: '2026-03-13T04:00:00Z', // 09:00 AM PKT
-    quizSlugs: ['pdc-quiz-1', 'pdc-quiz-2'],
-    poolType: 'main+quiz',
-    examName: 'PDC Exam',
-    description: '5 from Quiz 1, 5 from Quiz 2 + 20 from subject bank',
-  },
-  {
     slug: 'compiler-construction',
     label: 'Compiler Construction',
     shortLabel: 'CC',

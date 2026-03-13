@@ -103,13 +103,13 @@ export function LandingPage() {
          <a href="https://github.com/ZubairBinShaukat"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-3 px-5 py-3 rounded-full transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
+          className="group flex items-center gap-3 px-5 py-3 rounded-full transition-all duration-300 bg-black/5 dark:bg-white/5 cursor-pointer"
         >
           <div className="relative">
             <img
               src="https://avatars.githubusercontent.com/u/145450776?v=4"
               alt="Zubair Bin Shaukat"
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover ring-2 ring-transparent group-hover:ring-[rgb(var(--accent))] transition-all duration-300 group-hover:scale-105"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover ring-2 ring-[rgb(var(--accent))] transition-all duration-300 group-hover:scale-105"
             />
             <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[rgb(var(--bg-primary))] bg-emerald-500" />
           </div>
@@ -122,7 +122,7 @@ export function LandingPage() {
             </p>
           </div>
           <svg
-            className="w-4 h-4 text-content-secondary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ml-1"
+            className="w-4 h-4 text-content-secondary -translate-x-1 opacity-100 group-hover:translate-x-0 transition-all duration-300 ml-1"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
